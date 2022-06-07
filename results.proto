@@ -3,7 +3,6 @@ package raw;
 option go_package = "./;raw";
 
 import "google/protobuf/timestamp.proto";
-import "openapiv3/annotations.proto";
 
 /**
 * Sast Results gRPC Service v1.0.0
@@ -67,10 +66,6 @@ message Sort {
 }
 
 message Filter {
-  option (openapi.v3.schema) = {
-    title: "Filter";
-  };
-
   Field field = 1 [(openapi.v3.property) = {description: "Filter fields can be a combination of SEVERITY(0), STATUS(1) and QUERY_NAME(2)."}];
   Operation operation = 2 [(openapi.v3.property) = {description: "Operation on field can be either EQUALS(0) or CONTAINS(1)."}];
   repeated string values = 3 [(openapi.v3.property) = {description: "Possible values of a filter field."}];
@@ -87,10 +82,6 @@ message Filter {
 }
 
 message ResponseSastResults {
-  option (openapi.v3.schema) = {
-    title: "ResponseSastResults";
-  };
-
   string scan_id = 1 [(openapi.v3.property) = {description: "The scan id of the results."}];
   repeated SastResult results = 2 [(openapi.v3.property) = {description: "A list of the results."}];
   uint32 totalCount = 3 [(openapi.v3.property) = {description: "Total results count (for paging)"}];
@@ -98,11 +89,6 @@ message ResponseSastResults {
 
 
 message SastResult {
-  option (openapi.v3.schema) = {
-    title: "SastResult";
-
-  };
-
   string ID = 1 [(openapi.v3.property) = {description: "The result id field."}];
   int64 similarityID = 2 [(openapi.v3.property) = {description: "The similarity id field."}];
   uint64 queryID = 3 [(openapi.v3.property) = {description: "The query id field."}];
