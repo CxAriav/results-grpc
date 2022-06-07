@@ -21,11 +21,10 @@ service Results {
 // [Example]{
 //   "scan_id": "d6e96b11-5fe1-4e70-b341-d57e24def4a6",
 //   "tenant": "281504ab-1f97-4eba-b116-a45cb398e50d",
-//   "filters": ["SEVERITY,0,HIGH"],
+//   "filters": ["{"field": 0, "operation": 0, "values": ["HIGH"]}"],
 //   "apply_predicates": true,
 //   "offset": 0,
-//   "limit": 10000,
-//   "sorts": ["+severity","-state"]
+//   "limit": 10000
 //}
 message RequestGetSastResults {
   string scan_id = 1; // The scan id of the results
