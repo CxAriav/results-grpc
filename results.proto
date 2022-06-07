@@ -18,15 +18,24 @@ service Results {
 }
 
 // Get Sast Results Request
+// [Example] {
+//   "scan_id": "d6e96b11-5fe1-4e70-b341-d57e24def4a6",
+//   "tenant": "281504ab-1f97-4eba-b116-a45cb398e50d",
+//   "filters": ["SEVERITY,0,HIGH"],
+//   "apply_predicates": true,
+//   "offset": 0,
+//   "limit": 10000,
+//   "sorts": ["+severity","-state"],
+// }
 message RequestGetSastResults {
-  string scan_id = 1; // The scan id of the results. example: d6e96b11-5fe1-4e70-b341-d57e24def4a6
-  string tenant = 2; // The tenant id of the results." example: {yaml: "281504ab-1f97-4eba-b116-a45cb398e50d"}}];
-  repeated Filter filters = 3; // Filters to apply to the results." example: {yaml: "[SEVERITY,0,HIGH]"}}];
-  bool include_nodes = 4; // Whether to include nodes information to the results."}];
-  bool apply_predicates = 5; // Whether to apply result management changes to the results."}];
-  uint32 offset = 6; // Number of pages to skip before returning results."}];
-  uint32 limit = 7; // Page size of results to return." example: {yaml: "10000"}}];
-  repeated Sort sorts = 8; // Sorts to apply to the results." example: {yaml: "+severity,-state"}}];
+  string scan_id = 1; // The scan id of the results
+  string tenant = 2; // The tenant id of the results
+  repeated Filter filters = 3; // Filters to apply to the results
+  bool include_nodes = 4; // Whether to include nodes information to the results
+  bool apply_predicates = 5; // Whether to apply result management changes to the results
+  uint32 offset = 6; // Number of pages to skip before returning results
+  uint32 limit = 7; // Page size of results to return
+  repeated Sort sorts = 8; // Sorts to apply to the results
 }
 
 // Get Sast Results Diff Request
