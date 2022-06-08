@@ -21,10 +21,11 @@ service Results {
 // [Example]{
 //   "scan_id": "d6e96b11-5fe1-4e70-b341-d57e24def4a6",
 //   "tenant": "281504ab-1f97-4eba-b116-a45cb398e50d",
-//   "filters": ["{"field": 0, "operation": 0, "values": ["HIGH"]}"],
+//   "filters": [{"field": 0, "operation": 0, "values": ["HIGH"]}],
 //   "apply_predicates": true,
 //   "offset": 0,
 //   "limit": 10000
+//   "sorts": [{"field": 0, "direction": 1}]
 //}
 message RequestGetSastResults {
   string scan_id = 1; // The scan id of the results
@@ -38,17 +39,29 @@ message RequestGetSastResults {
 }
 
 // Get Sast Results Diff Request
+// [Example]{
+//   "dest_scan_id": "d6e96b11-5fe1-4e70-b341-d57e24def4a6",
+//   "source_branch": "main",
+//   "project_id": "37162f11-5fe1-4e70-b341-d512345effff",
+//   "tenant": "281504ab-1f97-4eba-b116-a45cb398e50d",
+//   "filters": [{"field": 0, "operation": 0, "values": ["HIGH"]}],
+//   "include_nodes": true,
+//   "apply_predicates": true,
+//   "offset": 0,
+//   "limit": 10000
+//   "sorts": [{"field": 0, "direction": 1}]
+//}
 message RequestGetSastResultsDiff {
-  string dest_scan_id = 1; // The destination scan id of the results comparison."}];
-  string source_branch = 2; // The source branch of the results comparison."}];
-  string project_id = 3; // The project id of the results comparison."}];
-  string tenant = 4; // The tenant id of the results comparison."}];
-  repeated Filter filters = 5; // Filters to apply to the results."}];
-  bool include_nodes = 6; // Whether to include nodes information to the results."}];
-  bool apply_predicates = 7; // Whether to apply result management changes to the results."}];
-  uint32 offset = 8; // Number of pages to skip before returning results."}];
-  uint32 limit = 9; // Page size of results to return."}];
-  repeated Sort sorts = 10; // Sorts to apply to the results."}];
+  string dest_scan_id = 1; // The destination scan id of the results comparison
+  string source_branch = 2; // The source branch of the results comparison
+  string project_id = 3; // The project id of the results comparison
+  string tenant = 4; // The tenant id of the results comparison
+  repeated Filter filters = 5; // Filters to apply to the results
+  bool include_nodes = 6; // Whether to include nodes information to the results
+  bool apply_predicates = 7; // Whether to apply result management changes to the results
+  uint32 offset = 8; // Number of pages to skip before returning results
+  uint32 limit = 9; // Page size of results to return
+  repeated Sort sorts = 10; // Sorts to apply to the results
 }
 
 // Sort Object
@@ -74,14 +87,15 @@ message Sort {
 }
 
 message Filter {
-  Field field = 1; // Filter fields can be a combination of SEVERITY(0), STATUS(1) and QUERY_NAME(2)."}];
-  Operation operation = 2; // Operation on field can be either EQUALS(0) or CONTAINS(1)."}];
-  repeated string values = 3; // Possible values of a filter field."}];
+  Field field = 1; // Filter fields can be a combination of SEVERITY(0), STATUS(1) and QUERY_NAME(2)
+  Operation operation = 2; // Operation on field can be either EQUALS(0) or CONTAINS(1)
+  repeated string values = 3; // Possible values of a filter field
 
   enum Operation {
     EQUALS = 0;
     CONTAINS = 1;
   }
+  
   enum Field {
     SEVERITY = 0;
     STATUS = 1;
@@ -90,42 +104,42 @@ message Filter {
 }
 
 message ResponseSastResults {
-  string scan_id = 1; // The scan id of the results."}];
-  repeated SastResult results = 2; // A list of the results."}];
-  uint32 totalCount = 3; // Total results count (for paging)"}];
+  string scan_id = 1; // The scan id of the results
+  repeated SastResult results = 2; // A list of the results
+  uint32 totalCount = 3; // Total results count (for paging)
 }
 
 
 message SastResult {
-  string ID = 1; // The result id field."}];
-  int64 similarityID = 2; // The similarity id field."}];
-  uint64 queryID = 3; // The query id field."}];
-  string queryName = 4; // The query name field."}];
-  string groupName = 5; // The group name field."}];
-  Severity severity = 6; // The severity of the results can be either HIGH, MEDIUM, LOW, INFO or TRACE."}];
-  int64 cweID = 7; // The cwe id field."}];
-  repeated string compliance = 8; // The compliance list field."}];
-  string languageName = 9; // The language name field."}];
-  float confidenceLevel = 10; // The confidence level of the existence of the result."}];
-  repeated Node nodes = 11; // The list of nodes represent the flow of the result."}];
-  string firstScanID = 12; // The first scan id of the result."}];
-  Status Status = 13; // The status of the result can be either NEW, RECURRENT or FIXED."}];
-  State State = 14; // The state of the result can be either TO_VERIFY, NOT_EXPLOITABLE, PROPOSED_NOT_EXPLOITABLE, CONFIRMED or URGENT."}];
-  google.protobuf.Timestamp foundAt = 15; // The time the result was found."}];
-  google.protobuf.Timestamp firstFoundAt = 16; // The first time the result (similarity) was found."}];
-  string description = 17; // The result query description."}];
+  string ID = 1; // The result id field
+  int64 similarityID = 2; // The similarity id field
+  uint64 queryID = 3; // The query id field
+  string queryName = 4; // The query name field
+  string groupName = 5; // The group name field
+  Severity severity = 6; // The severity of the results can be either HIGH, MEDIUM, LOW, INFO or TRACE
+  int64 cweID = 7; // The cwe id field
+  repeated string compliance = 8; // The compliance list field
+  string languageName = 9; // The language name field
+  float confidenceLevel = 10; // The confidence level of the existence of the result
+  repeated Node nodes = 11; // The list of nodes represent the flow of the result
+  string firstScanID = 12; // The first scan id of the result
+  Status Status = 13; // The status of the result can be either NEW, RECURRENT or FIXED
+  State State = 14; // The state of the result can be either TO_VERIFY, NOT_EXPLOITABLE, PROPOSED_NOT_EXPLOITABLE, CONFIRMED or URGENT
+  google.protobuf.Timestamp foundAt = 15; // The time the result was found
+  google.protobuf.Timestamp firstFoundAt = 16; // The first time the result (similarity) was found
+  string description = 17; // The result query description
 
   message Node {
-    string ID = 1; // The node unique id."}];
-    int32 column = 2; // The node column position."}];
-    string fileName = 3; // The file name of the node containing source file."}];
-    string fullName = 4; // The node full query name."}];
-    int32 length = 5; // The node length."}];
-    int32 line = 6; // The node line position."}];
-    int32 methodLine = 7; // The node containing method line position."}];
-    string name = 8; // The node name."}];
-    string domType = 9; // The node dom type."}];
-    string method = 10; // The name of containing method."}];
+    string ID = 1; // The node unique id
+    int32 column = 2; // The node column position
+    string fileName = 3; // The file name of the node containing source file
+    string fullName = 4; // The node full query name
+    int32 length = 5; // The node length
+    int32 line = 6; // The node line position
+    int32 methodLine = 7; // The node containing method line position
+    string name = 8; // The node name
+    string domType = 9; // The node dom type
+    string method = 10; // The name of containing method
   }
 }
 
