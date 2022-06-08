@@ -8,7 +8,7 @@ servers:
 documentation:
   content:
     introduction:
-      file: Readme.md
+      file: README.md
     authentication:
       text: This API does not require any authentication, but we have added a redundant auth method - Token Auth for demo purposes. You can select it and use it, but the results would be the same as without it.
 
