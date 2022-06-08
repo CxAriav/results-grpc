@@ -24,7 +24,7 @@ service Results {
 //   "filters": [{"field": 0, "operation": 0, "values": ["HIGH"]}],
 //   "apply_predicates": true,
 //   "offset": 0,
-//   "limit": 10000
+//   "limit": 10000,
 //   "sorts": [{"field": 0, "direction": 1}]
 //}
 message RequestGetSastResults {
@@ -48,7 +48,7 @@ message RequestGetSastResults {
 //   "include_nodes": true,
 //   "apply_predicates": true,
 //   "offset": 0,
-//   "limit": 10000
+//   "limit": 10000,
 //   "sorts": [{"field": 0, "direction": 1}]
 //}
 message RequestGetSastResultsDiff {
