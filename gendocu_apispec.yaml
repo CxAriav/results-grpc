@@ -4,7 +4,7 @@ servers:
     envs:
     - name: "local"
       urls:
-      - http://127.0.0.1:6503
+      - grpc://127.0.0.1:6503
 documentation:
   content:
     introduction:
