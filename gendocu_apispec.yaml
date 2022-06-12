@@ -2,9 +2,9 @@ spectype: gendocu
 servers:
   - selector: "*"
     envs:
-    - name: "aws"
+    - name: "local"
       urls:
-      - grpcs://t30z1m0w81.execute-api.us-east-1.amazonaws.com
+      - http://127.0.0.1:6503
 documentation:
   content:
     introduction:
